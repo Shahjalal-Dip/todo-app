@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { Todo } from "./Todo";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
 import { CreateTodoModal } from "./CreateTodoModal";
 import toast from 'react-hot-toast';
+import { Statistics } from "./Statistics";
 
 export function Dashboard() {
     const navigate = useNavigate();
@@ -52,7 +53,7 @@ export function Dashboard() {
     }
 
     return <>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
             <div style={{ width: "500px" }}>
                 <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
                     <h1>Welcome, {username}!</h1>
@@ -60,12 +61,12 @@ export function Dashboard() {
                         <Button variant="outlined" size="large" color="error" onClick={logoutClick}>Logout</Button>
                     </div>
                 </div>
+                <form className="taskForm">
                 <div style={{ padding: "10px" }}>
                     <TextField fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
                 </div>
-
-                <div>
-                    <div style={{ display: "flex",flexDirection:"column",columnGap:'20px'}}>
+                   <div>
+                    <div style={{ display: "flex",flexDirection:"column"}}>
                         <select onChange={(e) => setFilterPriority(e.target.value)}>
                             <option value="">All</option>
                             <option value="high">High Priority</option>
@@ -83,10 +84,11 @@ export function Dashboard() {
 
                     {sortedAndFilteredTodos().map(todo => <Todo key={todo.id} {...todo} updateTodos={getTodos} />)}
                 </div>    
-
+            </form>
                 <br />
                 <br />
                 <CreateTodoModal updateTodos={getTodos} />
+                <Statistics todos={todolist} />
             </div>
         </div>
     </>

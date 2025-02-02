@@ -20,6 +20,15 @@ function Create() {
             toast.error("Passwords do not match");
             return;
         }
+        if (!name || !email || !phone || !username || !pass || !cpass) {
+            toast.error("All fields are required!");
+            return;
+        }
+        if (pass.length < 4) {
+            toast.error("Password must be at least 4 characters!");
+            return;
+        }
+        
         const body = {
             "name": name,
             "email": email,

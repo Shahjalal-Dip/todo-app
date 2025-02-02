@@ -54,12 +54,11 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
     }, [deadline]);
 
     return (
-        <div id='tasklist' style={{ padding: "20px", margin: "10px", border: "1px solid black", borderRadius: "10px",
-        backgroundColor: priority > 8 ? "rgba(255,0,0,0.3)" : "rgba(0,255,0,0.3)"}}>
-            <div style={{fontSize: "30px", textDecoration: is_completed ? "line-through" : "",}}>
+        <div className='todo-item' style={{ backgroundColor: priority > 8 ? "rgba(121, 34, 34, 0.3)" : "rgba(0,255,0,0.3)"}}>
+            <div style={{fontSize: "25px", textDecoration: is_completed ? "line-through" : "",}}>
                 {is_completed ? "✅" : "⌛"} {title}
             </div>
-            <div>{description}</div>
+            <div style={{paddingTop:"10px"}}>{description}</div>
             <div>
             <p>Time left: {timeLeft}</p>
            </div>
@@ -67,7 +66,7 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
                 {!is_completed && (
                     <Button variant="contained" color="success" onClick={completeTodo}>Complete</Button>
                 )}
-                <div onClick={deleteClick} style={{ fontSize: "30px", cursor: "pointer" }}>❌</div>
+                <div onClick={deleteClick} style={{ fontSize: "25px", cursor: "pointer" }}>❌</div>
             </div>
         </div>
     );

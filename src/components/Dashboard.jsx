@@ -37,7 +37,8 @@ export function Dashboard() {
         let filtered = todolist.filter(todo => filterPriority === "" ||
             (filterPriority === "high" && todo.priority > 8) ||
             (filterPriority === "medium" && todo.priority > 5 && todo.priority <= 8) ||
-            (filterPriority === "low" && todo.priority <= 5)).filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()));
+            (filterPriority === "low" && todo.priority <= 5))
+            .filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()));
 
         if (sortBy === "creation") {
             filtered.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));

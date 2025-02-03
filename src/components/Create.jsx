@@ -1,8 +1,7 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate, Link } from "react-router-dom"; 
 import toast from 'react-hot-toast';
 
 function Create() {
@@ -82,6 +81,9 @@ function Create() {
                 <br/>
                 <br/>
                 <Button variant="outlined" size='large' onClick={handleClick}>Create Account</Button>
+                <div>
+                    Already have an account? <Link to="/login">Log in</Link>
+                </div>
             </div>
         </div>
     </>

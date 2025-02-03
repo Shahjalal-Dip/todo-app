@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+    const navigate = useNavigate(); // Hook to navigate
+
     return (
         <div style={{ 
             display: 'flex', 
@@ -10,9 +14,9 @@ function Home() {
         }}>
             <h1>🚀 Welcome to the Todo App!</h1>
             <p>Organize your tasks efficiently and track your progress.</p>
-            <a href="/login">
-                <button className="primary-button">Get Started</button>
-            </a>
+            <button className="primary-button" onClick={() => navigate("/login")}>
+                Get Started
+            </button>
         </div>
     );
 }

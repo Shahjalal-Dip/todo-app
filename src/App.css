@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
+*{
+    margin: 0;
+    padding: 0;
+}
 body {
     font-family: 'Roboto', sans-serif;
     background: #159957;
@@ -8,27 +11,9 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #155799, #159957);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    margin: 0;
-    padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #2193b0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-}
-
-.editSection{
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
@@ -62,7 +47,7 @@ button:hover {
 }
 
 .signuptextField{
-    background-Color: white;
+    background-Color: rgb(206, 240, 241);
     border-Radius: 5px ;
     width: 30vw;
 }
@@ -75,6 +60,52 @@ button:hover {
 .primary-button {
     background-color: #007bff;
     color: white;
+}
+.profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 25vw;
+    height: 80vh;
+    margin: 30px auto;
+    padding: 20px;
+    background: #2193b0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 10px;
+    border: #ee6c39 3px solid;
+}
+
+.editProfile form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 30vw;
+    height: 102vh;
+    margin: 10px auto;
+    padding: 20px;
+    background: #2193b0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    border: #eb6a6a 3px solid;
+}
+
+.editSection{
+    display: flex;
+    flex-direction: column;
+    background: #dd3e54;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6be585, #dd3e54);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6be585, #dd3e54); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .danger-button {
@@ -100,12 +131,6 @@ button:hover {
     align-items: center; */
 }
 
-.todo-item.completed {
-    text-decoration: line-through;
-    opacity: 0.6;
-}
-
-
 .taskForm select {
     padding: 10px;
     margin-bottom: 10px;
@@ -114,10 +139,84 @@ button:hover {
     border-radius: 4px;
     width: 31rem;
 }
+.chart{
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 10px;
+    border: #455e92 3px solid;
+    margin-top: 30px;
+    height: 40rem;
+}
 
-@media screen and (max-width: 768px) {
+.profilePage{
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    height: 80vh;
+    width: 30vw;
+    margin: 50px auto;
+    padding: 20px;
+    background: #2193b0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+.signupPage{
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    height: 120vh;
+    width: 35vw;
+    margin: 50px auto;
+    padding: 20px;
+    background: #2193b0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6dd5ed, #2193b0);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 430px) {
     .container {
-        width: 90%;
-        margin: 20px auto;
+     padding: 4px;
+    }
+
+    .profile{
+        max-width: 75vw;
+        height: 80vh;
+    }
+
+    .editProfile form{
+        max-width: 80vw;
+        height: 90vh;
+    }
+
+    .signuptextField{
+        background-Color: rgb(206, 240, 241);
+        border-Radius: 5px ;
+        width: 45vh;
+        /* height: 7vh; */
+    }
+    .logintextField{
+        background-Color: rgb(206, 240, 241);
+        border-Radius: 5px ;
+        width: 70vw;
+        height: 8vh;
+    }
+    .profilePage{
+        width: 80vw;
+    }
+    .signupPage{
+        height: 100vh;
+        width: 80vw;
     }
 }

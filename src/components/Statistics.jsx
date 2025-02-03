@@ -17,8 +17,8 @@ export function Statistics({ todos }) {
     };
 
     return (
-        <div className="container">
-            <h2>Task Statistics</h2>
+        <div className="chart">
+            <h2 style={{marginLeft:"160px"}}>Task Statistics</h2>
             <Pie data={data} />
         </div>
     );

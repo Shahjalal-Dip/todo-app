@@ -30,13 +30,15 @@ export function Profile({ username }) {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="container" style={{ padding: "20px", border: "1px solid black", borderRadius: "10px" }}>
+        <div className="profile">
+            {profile.profile_picture ? <img src={profile.profile_picture} alt="Profile" width={100} style={{borderRadius:"50%"}}/> : <p>No Image found</p>}
             <h2>{profile.name || "User"}</h2>
             <p>Email: {profile.email}</p>
             <p>Phone: {profile.phone}</p>
             <p>Username: {profile.username}</p>
-            {profile.profile_picture ? <img src={profile.profile_picture} alt="Profile" width={100} /> : <p>No Image</p>}
+            
             <button onClick={() => navigate("/edit-profile")} className="danger-button">Edit Profile</button>
+            <button onClick={() => navigate("/dashboard")} className="danger-button">Dashboard</button>
         </div>
     );
 }

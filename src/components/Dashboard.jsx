@@ -54,13 +54,16 @@ export function Dashboard() {
     }
 
     return <>
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100%" }}>
+        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100vh" }}>
             <div style={{ width: "500px" }}>
-                <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" }}>
+                <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" ,flexDirection:"column"}}>
                     <h1>Welcome, {username}!</h1>
-                    <div>
+                    <div style={{display:"flex",flexDirection:"row",gap:"17rem"}}>
+                        <Button style={{backgroundColor:"#ff4d4d",color:"white"}} variant="outlined" size="large"  onClick={() => navigate("/profile")}>Profile</Button>
+
                         <Button variant="outlined" size="large" color="error" onClick={logoutClick}>Logout</Button>
                     </div>
+                   <br />
                 </div>
                 <form className="taskForm">
                     <div style={{ padding: "10px", width: "31rem", marginLeft: "-7px" }}>
@@ -83,7 +86,7 @@ export function Dashboard() {
                             </select>
                         </div>
 
-                        {sortedAndFilteredTodos().map(todo => <Todo key={todo.id} {...todo} updateTodos={getTodos} />)}
+                        {sortedAndFilteredTodos().map(todo => <Todo {...todo} key={todo.id} updateTodos={getTodos} />)}
                     </div>
                 </form>
                 <br />

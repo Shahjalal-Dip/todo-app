@@ -55,7 +55,7 @@ function Create() {
     }
 
     return <>
-        <div className='container' style={{display:'flex', justifyContent:'center', alignItems: 'center', height: '120vh',width:'35vw'}}>
+        <div className='signupPage'>
             <div style={{display:'flex', flexDirection: 'column', alignItems:'center', gap: "10px"}}>
                 <div style={{fontSize:"40px"}}>Create Account</div>
                 <br/>

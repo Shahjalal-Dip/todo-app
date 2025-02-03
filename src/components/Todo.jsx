@@ -14,23 +14,41 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
         updateTodos();
     }
 
+   
+
     async function completeTodo() {
-        const r = await fetch(`https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/todo/${id}`, {
+        const bodyData = {
+            "title": title,
+            "description": description,
+            "deadline": deadline,
+            "priority": parseInt(priority),
+            "is_completed":true,
+        };
+    
+        // console.log("Request Body:", JSON.stringify(bodyData)); // Debugging
+        
+        const response = await fetch(`https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/todo/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({is_completed:true})
+            body: JSON.stringify(bodyData)
         });
-        const j = await r.json();
-        console.log(j); // Log the response for debugging
-        if (j.success) {
+    
+        const data = await response.json();
+        console.log("API Response:", data);
+    
+        if (response.ok) {
             toast.success("Task marked as completed!");
             updateTodos();
         } else {
             toast.error("Failed to mark task as completed.");
         }
     }
+    
+    
+    
+    
 
     useEffect(() => {
         function updateCountdown() {

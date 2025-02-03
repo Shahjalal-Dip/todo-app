@@ -79,13 +79,12 @@ export function EditProfile({ username }) {
     if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="container" style={{ display: "flex", flexDirection: "column" }}>
-            <form onSubmit={handleSubmit} style={{ padding: "20px", border: "1px solid black", borderRadius: "10px" }}>
-                <h2>Edit Profile</h2>
-
-                <div className="editSection">
-                    <label>Profile Picture:</label>
-                    {profile.profile_picture && <img src={profile.profile_picture} alt="Profile" width={100} />}
+        <div className="editProfile">
+            <form>
+                <h2 style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>Edit Profile</h2>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }} >
+                    {profile.profile_picture ? <img src={profile.profile_picture} alt="Profile" width={100} style={{ borderRadius: "50%" }} /> : <p>No Image found</p>}
+                    <br />
                     <input type="file" accept="image/*" onChange={(e) => setNewImage(e.target.files[0])} />
                 </div>
 
@@ -107,7 +106,8 @@ export function EditProfile({ username }) {
                     <label>Username:</label>
                     <input type="text" value={profile.username} onChange={(e) => setProfile({ ...profile, username: e.target.value })} required />
                 </div>
-                <button className="danger-button" type="submit" >Save Changes</button>
+                <button className="danger-button" onClick={handleSubmit} >Save Changes</button>
+                <button onClick={() => navigate("/profile")} className="danger-button">Back</button>
             </form>
         </div>
 

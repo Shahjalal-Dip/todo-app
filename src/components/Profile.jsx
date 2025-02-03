@@ -34,6 +34,7 @@ export function Profile({ username }) {
             <h2>{profile.name || "User"}</h2>
             <p>Email: {profile.email}</p>
             <p>Phone: {profile.phone}</p>
+            <p>Username: {profile.username}</p>
             {profile.profile_picture ? <img src={profile.profile_picture} alt="Profile" width={100} /> : <p>No Image</p>}
             <button onClick={() => navigate("/edit-profile")} className="danger-button">Edit Profile</button>
         </div>

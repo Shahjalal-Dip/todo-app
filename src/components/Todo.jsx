@@ -20,7 +20,7 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ is_completed:true})
+            body: JSON.stringify({is_completed:true})
         });
         const j = await r.json();
         console.log(j); // Log the response for debugging
@@ -54,7 +54,7 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
     }, [deadline]);
 
     return (
-        <div className='todo-item' style={{ backgroundColor: priority > 8 ? "rgba(121, 34, 34, 0.3)" : "rgba(0,255,0,0.3)"}}>
+        <div className='todo-item' style={{ backgroundColor: priority > 8 ? "rgba(190, 14, 14, 0.3)" : "rgba(0,255,0,0.3)"}}>
             <div style={{fontSize: "25px", textDecoration: is_completed ? "line-through" : "",}}>
                 {is_completed ? "✅" : "⌛"} {title}
             </div>

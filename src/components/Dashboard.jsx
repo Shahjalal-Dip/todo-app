@@ -3,7 +3,6 @@ import { Form, useNavigate } from "react-router-dom";
 import { Todo } from "./Todo";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-
 import { CreateTodoModal } from "./CreateTodoModal";
 import toast from 'react-hot-toast';
 import { Statistics } from "./Statistics";
@@ -62,8 +61,8 @@ export function Dashboard() {
                     </div>
                 </div>
                 <form className="taskForm">
-                <div style={{ padding: "10px" }}>
-                    <TextField fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
+                <div style={{ padding: "10px", width:"31rem",marginLeft:"-7px"}}>
+                    <TextField style={{backgroundColor:"white",borderRadius:"5px"}} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
                 </div>
                    <div>
                     <div style={{ display: "flex",flexDirection:"column"}}>

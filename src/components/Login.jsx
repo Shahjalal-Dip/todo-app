@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
     const navigate = useNavigate();
@@ -53,7 +53,7 @@ function Login() {
                 <br/>
                 <br/>
                 <div>
-                <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                   Do not have an account? <Link to="/signup">Sign Up</Link>
                 </div>
             </div>
         </div>

@@ -1,109 +1,106 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-export function EditProfile() {
+export function EditProfile({ username }) {
     const navigate = useNavigate();
-    const [profile, setProfile] = useState(null);
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [phone, setPhone] = useState("");
-    const [profilePic, setProfilePic] = useState("");
-    const [imageFile, setImageFile] = useState(null);
+    const [profile, setProfile] = useState({ name: "", email: "", phone:"", profile_picture: "" });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [newImage, setNewImage] = useState(null);  // Store new image file
     
     useEffect(() => {
         async function fetchProfile() {
-            const res = await fetch("http://3.109.211.104:8001/profile");
-            const data = await res.json();
-            setProfile(data);
-            setName(data.name);
-            setEmail(data.email);
-            setPhone(data.phone);
-            setProfilePic(data.profile_picture);
+            try {
+                const response = await fetch(`http://3.109.211.104:8001/profile/${username}`);
+                if (!response.ok) throw new Error("Failed to load profile");
+
+                const data = await response.json();
+                setProfile(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
         }
+
         fetchProfile();
-    }, []);
+    }, [username]);
 
-    // Function to handle file selection
-    function handleFileChange(e) {
-        setImageFile(e.target.files[0]);
-    }
 
-    // Function to upload image to Cloudinary
-    async function uploadImage() {
-        if (!imageFile) return null;
-
+    async function uploadImage(file) {
         const formData = new FormData();
-        formData.append("file", imageFile);
-        formData.append("upload_preset", "unsigned_upload"); // Replace with your Cloudinary preset
+        formData.append("file", file);
+        formData.append("upload_preset", "unsigned_upload");  // Replace with Cloudinary preset
 
         try {
-            const res = await axios.post(
-                "https://api.cloudinary.com/v1_1/demudmw7l/image/upload", // Replace 'your_cloud_name'
-                formData
-            );
-            console.log("Uploaded Image URL:", res.data.secure_url);
-            return res.data.secure_url;
+            const response = await fetch("https://api.cloudinary.com/v1_1/demudmw7l/image/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+            return data.secure_url;  // Get the uploaded image URL
         } catch (err) {
-            console.error("Image upload failed:", err);
-            toast.error("Image upload failed!");
+            console.error("Upload failed:", err);
             return null;
         }
     }
 
-    // Function to update profile
-    async function updateProfile() {
-        const uploadedImageUrl = await uploadImage(); 
-        const updatedProfile = {
-            name,
-            email,
-            phone,
-            profile_picture: uploadedImageUrl || profilePic // Use uploaded URL or existing
-        };
-        setProfilePic(uploadedImageUrl)
-        
-        setName("");
-        setEmail("");
-        setPhone("");
-        
-        console.log("Updated Profile Data:", updatedProfile); // Debugging
-    
-        const res = await fetch("http://3.109.211.104:8001/profile", {
+ // Handle form submission
+ async function handleSubmit(e) {
+    e.preventDefault();
+
+    let imageUrl = profile.profile_picture; // Keep existing image
+    if (newImage) {
+        imageUrl = await uploadImage(newImage);  // Upload new image
+        if (!imageUrl) return toast.error("Image upload failed!");
+    }
+
+    const updatedProfile = { ...profile, profile_picture: imageUrl };
+
+    try {
+        const response = await fetch(`http://3.109.211.104:8001/profile/${username}`, {
             method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updatedProfile)
         });
-    
-        const data = await res.json();
-        toast.success("Profile updated!");
-        navigate("/profile");
-        console.log("Server Response:", data); // Debugging
+
+        if (!response.ok) throw new Error("Failed to update profile");
+
+        toast.success("Profile updated successfully!");
+        setProfile(updatedProfile);  // Update UI
+    } catch (err) {
+        toast.error("Error: " + err.message);
     }
-    
-
-    if (!profile) return <p>Loading...</p>;
-
-    return (
-        <div className="container" style={{ textAlign: "center", padding: "20px" }}>
-            <h2>Edit Profile</h2>
-            <img 
-                src={profilePic || "https://via.placeholder.com/150"} 
-                alt="Profile" 
-                style={{ width: "150px", height: "150px", borderRadius: "50%" }} 
-            />
-            <br /><br />
-            <input type="file" accept="image/*" onChange={handleFileChange} />
-            <br /><br />
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Name" />
-            <br /><br />
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" />
-            <br /><br />
-            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="Phone" />
-            <br /><br />
-            <button onClick={updateProfile} className="primary-button">Update Profile</button>
-        </div>
-    );
 }
+
+if (loading) return <p>Loading profile...</p>;
+if (error) return <p>Error: {error}</p>;
+
+return (
+    <div className="container" style={{display:"flex",flexDirection:"column"}}>
+          <form onSubmit={handleSubmit} style={{ padding: "20px", border: "1px solid black", borderRadius: "10px" }}>
+        <h2>Edit Profile</h2>
+
+        <label>Name:</label>
+        <input type="text" value={profile.name} onChange={(e) => setProfile({ ...profile, name: e.target.value })} required />
+
+        <label>Email:</label>
+        <input type="email" value={profile.email} onChange={(e) => setProfile({ ...profile, email: e.target.value })} required />
+
+        <label>Phone:</label>
+        <input type="phone" value={profile.phone} onChange={(e) => setProfile({ ...profile, phone: e.target.value })} required />
+
+        <label>Profile Picture:</label>
+        {profile.profile_picture && <img src={profile.profile_picture} alt="Profile" width={100} />}
+        <input type="file" accept="image/*" onChange={(e) => setNewImage(e.target.files[0])} />
+
+        <button className="danger-button" type="submit" >Save Changes</button>
+    </form>
+    </div>
+   
+);
+}
+
+

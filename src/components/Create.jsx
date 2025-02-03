@@ -37,7 +37,7 @@ function Create() {
             "password": pass,
             "profile_picture": ""
         };
-        const response = await fetch("http://3.109.211.104:8001/docs#/default/register", {
+        const response = await fetch("http://3.109.211.104:8001/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

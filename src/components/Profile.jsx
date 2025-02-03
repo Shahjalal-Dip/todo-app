@@ -1,55 +1,41 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function Profile() {
+export function Profile({ username }) {
     const navigate = useNavigate();
     const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    // useEffect(() => {
-    //     async function fetchProfile() {
-    //         const res = await fetch("http://3.109.211.104:8001/profile");
-    //         const data = await res.json();
-    //         setProfile(data);
-    //     }
-    //     fetchProfile();
-    // }, []);
-    async function fetchProfile() {
-        try {
-            const res = await fetch("http://3.109.211.104:8001/user/1"); // Replace with correct API
-            const data = await res.json();
-            setProfile(data);
-            localStorage.setItem("profile", JSON.stringify(data)); // ✅ Store updated profile
-        } catch (error) {
-            console.error("Error fetching profile:", error);
-        }
-    }
-    
+ 
     useEffect(() => {
-        const storedProfile = localStorage.getItem("profile");
-        if (storedProfile) {
-            setProfile(JSON.parse(storedProfile));
+        async function fetchProfile() {
+            try {
+                const response = await fetch(`http://3.109.211.104:8001/profile/${username}`);
+                if (!response.ok) throw new Error("Failed to load profile");
+
+                const data = await response.json();
+                setProfile(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
         }
+
         fetchProfile();
-    }, []);
-    
-    if (!profile) return <p>Loading...</p>;
+    }, [username]);
+
+    if (loading) return <p>Loading profile...</p>;
+    if (error) return <p>Error: {error}</p>;
 
     return (
-        <div className="container" style={{ textAlign: "center", padding: "20px" }}>
-            <h1>{profile.name}</h1>
-            <img 
-                src={profile.profile_picture ? profile.profile_picture : "https://via.placeholder.com/150"} 
-                alt="Profile" 
-                style={{ 
-                    width: "150px", 
-                    height: "150px", 
-                    borderRadius: "50%", 
-                    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)"
-                }} 
-            />
+        <div className="container" style={{ padding: "20px", border: "1px solid black", borderRadius: "10px" }}>
+            <h2>{profile.name || "User"}</h2>
             <p>Email: {profile.email}</p>
             <p>Phone: {profile.phone}</p>
-            <button onClick={() => navigate("/edit-profile")} className="primary-button">Edit Profile</button>
+            {profile.profile_picture ? <img src={profile.profile_picture} alt="Profile" width={100} /> : <p>No Image</p>}
+            <button onClick={() => navigate("/edit-profile")} className="danger-button">Edit Profile</button>
         </div>
     );
 }

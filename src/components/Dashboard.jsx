@@ -7,9 +7,11 @@ import { CreateTodoModal } from "./CreateTodoModal";
 import toast from 'react-hot-toast';
 import { Statistics } from "./Statistics";
 
+
 export function Dashboard() {
     const navigate = useNavigate();
     const username = localStorage.getItem("username");
+
 
     const [todolist, setTodoList] = useState([]);
     const [search, setSearch] = useState("");
@@ -61,29 +63,29 @@ export function Dashboard() {
                     </div>
                 </div>
                 <form className="taskForm">
-                <div style={{ padding: "10px", width:"31rem",marginLeft:"-7px"}}>
-                    <TextField style={{backgroundColor:"white",borderRadius:"5px"}} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
-                </div>
-                   <div>
-                    <div style={{ display: "flex",flexDirection:"column"}}>
-                        <select onChange={(e) => setFilterPriority(e.target.value)}>
-                            <option value="">All</option>
-                            <option value="high">High Priority</option>
-                            <option value="medium">Medium Priority</option>
-                            <option value="low">Low Priority</option>
-                        </select>
-
-                        <select onChange={(e) => setSortBy(e.target.value)}>
-                            <option value="">Sort by</option>
-                            <option value="creation">Creation Time</option>
-                            <option value="deadline">Deadline</option>
-                            <option value="priority">Priority</option>
-                        </select>
+                    <div style={{ padding: "10px", width: "31rem", marginLeft: "-7px" }}>
+                        <TextField style={{ backgroundColor: "white", borderRadius: "5px" }} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
                     </div>
+                    <div>
+                        <div style={{ display: "flex", flexDirection: "column" }}>
+                            <select onChange={(e) => setFilterPriority(e.target.value)}>
+                                <option value="">All</option>
+                                <option value="high">High Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="low">Low Priority</option>
+                            </select>
 
-                    {sortedAndFilteredTodos().map(todo => <Todo key={todo.id} {...todo} updateTodos={getTodos} />)}
-                </div>    
-            </form>
+                            <select onChange={(e) => setSortBy(e.target.value)}>
+                                <option value="">Sort by</option>
+                                <option value="creation">Creation Time</option>
+                                <option value="deadline">Deadline</option>
+                                <option value="priority">Priority</option>
+                            </select>
+                        </div>
+
+                        {sortedAndFilteredTodos().map(todo => <Todo key={todo.id} {...todo} updateTodos={getTodos} />)}
+                    </div>
+                </form>
                 <br />
                 <br />
                 <CreateTodoModal updateTodos={getTodos} />

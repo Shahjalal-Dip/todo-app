@@ -89,22 +89,6 @@ button:hover {
     width: 31rem;
 }
 
-/* .profile-container {
-    text-align: center;
-    padding: 20px;
-}
-
-.profile-container img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.profile-container button {
-    margin-top: 10px;
-} */
-
 @media screen and (max-width: 768px) {
     .container {
         width: 90%;

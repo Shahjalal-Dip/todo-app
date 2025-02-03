@@ -9,6 +9,7 @@ import { Profile } from "./components/Profile";
 import { EditProfile } from "./components/EditProfile";
 
 function App() {
+  const username = localStorage.getItem("username");
   return <>
     <Router>
       <Routes>
@@ -16,8 +17,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Create />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/profile" element={<Profile username={username}/>} />
+        <Route path="/edit-profile" element={<EditProfile username={username}/>} />
       </Routes>
     </Router>
     <Toaster />

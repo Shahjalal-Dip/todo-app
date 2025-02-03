@@ -36,7 +36,7 @@ function Create() {
             "password": pass,
             "profile_picture": ""
         };
-        const response = await fetch("http://3.109.211.104:8001/register", {
+        const response = await fetch("https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -55,33 +55,33 @@ function Create() {
     }
 
     return <>
-        <div style={{display:'flex', justifyContent:'center', alignItems: 'center', height: '100vh'}}>
+        <div className='container' style={{display:'flex', justifyContent:'center', alignItems: 'center', height: '120vh',width:'35vw'}}>
             <div style={{display:'flex', flexDirection: 'column', alignItems:'center', gap: "10px"}}>
-                <div style={{fontSize:"40px"}}>Create an Account</div>
+                <div style={{fontSize:"40px"}}>Create Account</div>
                 <br/>
                 <br/>
                 <div>
-                    <TextField placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
+                    <TextField className='signuptextField' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)} />
                     <br/>
                     <br/>
-                    <TextField placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  />
+                    <TextField className='signuptextField' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}  />
                     <br/>
                     <br/>
-                    <TextField placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)}  />
+                    <TextField className='signuptextField' placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)}  />
                     <br/>
                     <br/>
-                    <TextField placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}  />
+                    <TextField className='signuptextField' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}  />
                     <br/>
                     <br/>
-                    <TextField type="password" placeholder='Password' value={pass} onChange={(e) => setPass(e.target.value)} />
+                    <TextField className='signuptextField' type="password" placeholder='Password' value={pass} onChange={(e) => setPass(e.target.value)} />
                     <br/>
                     <br/>
-                    <TextField type="password" placeholder='Confirm Password' value={cpass} onChange={(e) => setCpass(e.target.value)} />
+                    <TextField className='signuptextField' type="password" placeholder='Confirm Password' value={cpass} onChange={(e) => setCpass(e.target.value)} />
                 </div>
                 <br/>
-                <br/>
-                <Button variant="outlined" size='large' onClick={handleClick}>Create Account</Button>
+                <Button style={{backgroundColor:"blue",color:"white"}}variant="outlined" size='large' onClick={handleClick}>sign up</Button>
                 <div>
+                    <br />
                     Already have an account? <Link to="/login">Log in</Link>
                 </div>
             </div>

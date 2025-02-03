@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 export function EditProfile({ username }) {
     const navigate = useNavigate();
-    const [profile, setProfile] = useState({ name: "", email: "", phone: "", username: "", password: "", profile_picture: "" });
+    const [profile, setProfile] = useState({ name: "", email: "", phone: "", username: "", profile_picture: "" });
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [newImage, setNewImage] = useState(null);  // Store new image file
@@ -12,7 +12,7 @@ export function EditProfile({ username }) {
     useEffect(() => {
         async function fetchProfile() {
             try {
-                const response = await fetch(`http://3.109.211.104:8001/profile/${username}`);
+                const response = await fetch(`https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/profile/${username}`);
                 if (!response.ok) throw new Error("Failed to load profile");
 
                 const data = await response.json();
@@ -51,16 +51,16 @@ export function EditProfile({ username }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        let imageUrl = profile.profile_picture; // Keep existing image
+        let imageUrl = profile.profile_picture; // here we Keep existing image
         if (newImage) {
-            imageUrl = await uploadImage(newImage);  // Upload new image
+            imageUrl = await uploadImage(newImage);  // here Upload new image
             if (!imageUrl) return toast.error("Image upload failed!");
         }
 
         const updatedProfile = { ...profile, profile_picture: imageUrl };
 
         try {
-            const response = await fetch(`http://3.109.211.104:8001/profile/${username}`, {
+            const response = await fetch(`https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/profile/${username}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(updatedProfile)
@@ -69,7 +69,7 @@ export function EditProfile({ username }) {
             if (!response.ok) throw new Error("Failed to update profile");
 
             toast.success("Profile updated successfully!");
-            setProfile(updatedProfile);  // Update UI
+            setProfile(updatedProfile);  // Update UI here
         } catch (err) {
             toast.error("Error: " + err.message);
         }

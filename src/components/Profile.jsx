@@ -11,7 +11,7 @@ export function Profile({ username }) {
     useEffect(() => {
         async function fetchProfile() {
             try {
-                const response = await fetch(`http://3.109.211.104:8001/profile/${username}`);
+                const response = await fetch(`https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev//profile/${username}`);
                 if (!response.ok) throw new Error("Failed to load profile");
 
                 const data = await response.json();

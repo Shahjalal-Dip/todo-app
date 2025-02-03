@@ -61,6 +61,17 @@ button:hover {
     opacity: 0.8;
 }
 
+.signuptextField{
+    background-Color: white;
+    border-Radius: 5px ;
+    width: 30vw;
+}
+.logintextField{
+    background-Color: rgb(206, 240, 241);
+    border-Radius: 5px ;
+    width: 20vw;
+    height: 9vh;
+}
 .primary-button {
     background-color: #007bff;
     color: white;

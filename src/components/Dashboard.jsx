@@ -19,7 +19,7 @@ export function Dashboard() {
     const [sortBy, setSortBy] = useState("");
 
     async function getTodos() {
-        const r = await fetch("http://3.109.211.104:8001/todos");
+        const r = await fetch("https://5nvfy5p7we.execute-api.ap-south-1.amazonaws.com/dev/todos");
         const j = await r.json();
         setTodoList(j);
         console.log(j);
@@ -64,7 +64,7 @@ export function Dashboard() {
                 </div>
                 <form className="taskForm">
                     <div style={{ padding: "10px", width: "31rem", marginLeft: "-7px" }}>
-                        <TextField style={{ backgroundColor: "white", borderRadius: "5px" }} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
+                        <TextField style={{backgroundColor:"white",borderRadius:"5px"}} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
                     </div>
                     <div>
                         <div style={{ display: "flex", flexDirection: "column" }}>

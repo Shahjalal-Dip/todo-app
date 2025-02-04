@@ -72,7 +72,7 @@ export function Todo({ title, description, is_completed, priority, id, updateTod
     }, [deadline]);
 
     return (
-        <div className='todo-item' style={{ backgroundColor: priority > 8 ? "rgba(190, 14, 14, 0.3)" : "rgba(0,255,0,0.3)"}}>
+        <div className='task-item' style={{ backgroundColor: priority > 8 ? "rgba(233, 160, 160, 0.3)" : "rgba(0,255,0,0.3)"}}>
             <div style={{fontSize: "25px", textDecoration: is_completed ? "line-through" : "",}}>
                 {is_completed ? "✅" : "⌛"} {title}
             </div>

@@ -56,7 +56,7 @@ function Create() {
 
     return <>
         <div className='signupPage'>
-            <div style={{display:'flex', flexDirection: 'column', alignItems:'center', gap: "10px"}}>
+            {/* <div> */}
                 <div style={{fontSize:"40px"}}>Create Account</div>
                 <br/>
                 <br/>
@@ -84,7 +84,7 @@ function Create() {
                     <br />
                     Already have an account? <Link to="/login">Log in</Link>
                 </div>
-            </div>
+            {/* </div> */}
         </div>
     </>
 }

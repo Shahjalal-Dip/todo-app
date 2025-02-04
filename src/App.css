@@ -4,107 +4,252 @@
     padding: 0;
 }
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: 'Roboto', sans-serif;
-    background: #159957;
-    background: -webkit-linear-gradient(to right, #155799, #159957);
-    background: linear-gradient(to right, #155799, #159957);
+    background: linear-gradient(to right, #6a11cb, #2575fc);
 }
 
 .container {
+    margin: 20px 0px 20px 0px;
+    width: 90%;
     max-width: 600px;
-    margin: 50px auto;
     padding: 20px;
-    background: #2193b0;
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
 }
 
 h1 {
-    color: #333;
-    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    animation: slideIn 1s ease-in-out;
 }
 
 button {
-    padding: 10px 20px;
-    margin-top: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 20px;
 }
 
 button:hover {
     opacity: 0.8;
 }
 
-.signuptextField{
-    background-Color: rgb(206, 240, 241);
-    border-Radius: 5px ;
-    width: 30vw;
+/* Profile button */
+.profile-button {
+    background: #ff7eb3;
+    color: white;
 }
-.logintextField{
-    background-Color: rgb(206, 240, 241);
-    border-Radius: 5px ;
-    width: 20vw;
-    height: 9vh;
+
+.profile-button:hover {
+    transform: scale(1.1);
+    background: #ff4f89;
 }
+
+/* Logout button */
+.logout-button {
+    background: #ff4d4d;
+    color: white;
+}
+
+.logout-button:hover {
+    transform: scale(1.1);
+    background: #e60000;
+}
+/* Input field */
+.taskForm  input{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: black;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown styles */
+select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    margin: 5px 0;
+    background: white;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Select hover */
+select:hover {
+    background: #e0e0e0;
+}
+
+/* Task items */
+.task-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Task item animation */
+.task-item {
+    padding: 15px;
+    border-left: 5px solid #007bff;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.task-item:hover {
+    transform: scale(1.02);
+    background: rgba(255, 255, 255, 0.25);
+} 
+
 .primary-button {
     background-color: #007bff;
     color: white;
 }
-.profile{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 25vw;
-    height: 80vh;
-    margin: 30px auto;
-    padding: 20px;
-    background: #2193b0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    border-radius: 10px;
-    border: #ee6c39 3px solid;
+/* Profile Container */
+.profile {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    margin: 40px 0 20px 0;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 1s ease-in-out;
+    color: white;
 }
 
-.editProfile form{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 30vw;
-    height: 102vh;
-    margin: 10px auto;
-    padding: 20px;
-    background: #2193b0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    border: #eb6a6a 3px solid;
+/* Profile Image */
+.profile img {
+    border: 3px solid white;
+    transition: transform 0.3s ease-in-out;
 }
 
-.editSection{
+.profile img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Profile Name */
+.profile h2 {
+    margin-top: 10px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Profile Details */
+.profile p {
+    font-size: 16px;
+    margin: 25px 0;
+}
+
+/* Edit Profile Container */
+.editProfile {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    margin: 20px 0 20px 0;
+    border-radius: 15px;
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 380px;
+    animation: fadeIn 1s ease-in-out;
+    color: black;
+}
+
+/* Profile Image */
+.editProfile img {
+    margin-top: 10px;
+    border: 3px solid #ff6b6b;
+    transition: transform 0.3s ease-in-out;
+}
+
+.editProfile img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Input Fields */
+.editSection {
     display: flex;
     flex-direction: column;
-    background: #dd3e54;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6be585, #dd3e54);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6be585, #dd3e54); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.editSection label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.editSection input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: 0.3s ease;
+}
+
+.editSection input:focus {
+    border-color: #ff6b6b;
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 107, 107, 0.3);
+}
+
+/* File Upload */
+input[type="file"] {
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-bottom: 15px;
+    border: none;
+    background: none;
+    cursor: pointer;
 }
 
 .danger-button {
-    background-color: #ff4d4d;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
     color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    margin: 10px 5px;
+    width: 100%;
+}
+
+.danger-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(255, 75, 43, 0.3);
 }
 
 .success-button {
@@ -112,105 +257,276 @@ button:hover {
     color: white;
 }
 
-.todo-item {
-    padding: 15px;
-    margin: 10px 0;
-    background-color: #fff;
-    border-left: 5px solid #007bff;
-    box-shadow: 0px 2px 4px rgba(26, 111, 223, 0.1);
-    border-radius: 5px;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between;
-    align-items: center; */
-}
-
-.taskForm select {
-    padding: 10px;
-    margin-bottom: 10px;
-    margin-left: 3px;
-    border: 1px solid #eb6a6a;
-    border-radius: 4px;
-    width: 31rem;
-}
 .chart{
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
     border-radius: 10px;
     border: #455e92 3px solid;
     margin-top: 30px;
-    height: 40rem;
+    height: 35rem;
+    padding: 30px;
+    color:rgb(63, 12, 12);
 }
 
-.profilePage{
-    display: flex;
-    justify-Content: center;
-    align-Items: center;
-    height: 80vh;
-    width: 30vw;
-    margin: 50px auto;
-    padding: 20px;
-    background: #2193b0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+/* Login Page Container */
+.profilePage {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    margin: 50px 0px 20px 0px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 350px;
+    animation: fadeIn 1s ease-in-out;
+}
 
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    border-radius: 10px;
+/* Profile Icon */
+.profilePage svg {
+    color: white;
+    animation: bounce 1s infinite alternate;
+}
+
+/* Input Fields */
+.logintextField {
+    width: 100%;
+    background-color: #2193b0;
+    transition: all 0.3s ease-in-out;
+}
+
+.logintextField input {
+    color: white !important;
+    border-bottom: 2px solid white !important;
+}
+
+.logintextField input:focus {
+    border-bottom: 2px solid #ffeb3b !important;
+}
+
+
+/* Login Button */
+.profilePage button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.profilePage button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(255, 75, 43, 0.3);
+}
+
+/* Signup Link */
+.profilePage a {
+    color: #ffeb3b;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.profilePage a:hover {
+    text-decoration: underline;
 }
 
 .signupPage{
-    display: flex;
-    justify-Content: center;
-    align-Items: center;
-    height: 120vh;
-    width: 35vw;
-    margin: 50px auto;
-    padding: 20px;
-    background: #2193b0;
-    /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #6dd5ed, #2193b0);
-    /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #6dd5ed, #2193b0);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    margin: 50px 0px 50px 0px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+    width: 400px;
+    animation: fadeIn 1s ease-in-out;
+}
 
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-    border-radius: 10px;
+/* Signup Title */
+.signupPage div:first-child {
+    color: white;
+    font-weight: bold;
+    animation: slideIn 1s ease-in-out;
+}
+
+/* Input Fields */
+.signuptextField {
+    width: 100%;
+    background-color: #2193b0;
+    margin-bottom: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.signuptextField input {
+    color: white !important;
+    border-bottom: 2px solid white !important;
+}
+
+.signuptextField input:focus {
+    border-bottom: 2px solid #ffeb3b !important;
+}
+
+/* Signup Button */
+.signupPage button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.signupPage button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(255, 75, 43, 0.3);
+}
+
+/* Login Link */
+.signupPage a {
+    color: #ffeb3b;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.signupPage a:hover {
+    text-decoration: underline;
+}
+
+.home-container {
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+
+/* Heading animation */
+.home-container h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    animation: slideIn 1s ease-in-out;
+}
+
+/* Description text */
+.home-container p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 20px;
+    margin-left: 60px;
+}
+
+/* Button styles */
+.primary-button {
+    background: #ff7eb3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover effect */
+.primary-button:hover {
+    transform: scale(1.1);
+    background: #ff4f89;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide-in animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-10px);
+    }
 }
 
 @media screen and (max-width: 430px) {
     .container {
      padding: 4px;
+     margin: 20px 0px 20px 17px;
     }
 
-    .profile{
-        max-width: 75vw;
-        height: 80vh;
+    .profile {
+        margin: 100px 0px 0px -15px;
+        width: 90%;
+        padding: 30px;
+    }
+    .editProfile {
+        margin: 10px 0px 10px -9px;
+        width: 90%;
+        padding: 25px;
     }
 
-    .editProfile form{
-        max-width: 80vw;
-        height: 90vh;
+    .profilePage {
+        margin: 100px 0px 0px -20px;
+        width: 100%;
+        padding:20px;
     }
-
-    .signuptextField{
-        background-Color: rgb(206, 240, 241);
-        border-Radius: 5px ;
-        width: 45vh;
-        /* height: 7vh; */
+    .signupPage {
+        margin: 20px -15px 20px -15px;
+        width: 90%;
+        padding: 30px;
     }
-    .logintextField{
-        background-Color: rgb(206, 240, 241);
-        border-Radius: 5px ;
-        width: 70vw;
-        height: 8vh;
+    .home-container h1 {
+        font-size: 2rem;
     }
-    .profilePage{
-        width: 80vw;
+    .home-container p {
+        font-size: 1rem;
+        margin-right: 30px ;
     }
-    .signupPage{
-        height: 100vh;
-        width: 80vw;
+    .primary-button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+    h1 {
+        font-size: 1.8rem;
+    }
+    button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+    .chart{
+        margin-top: 30px;
+        height: 25rem;
+        padding: 10px;
     }
 }

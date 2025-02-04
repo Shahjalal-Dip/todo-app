@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react"
-import { Form, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Todo } from "./Todo";
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { CreateTodoModal } from "./CreateTodoModal";
 import toast from 'react-hot-toast';
 import { Statistics } from "./Statistics";
-
+// import "./Dashboard.css"; // Import the CSS
 
 export function Dashboard() {
     const navigate = useNavigate();
     const username = localStorage.getItem("username");
-
 
     const [todolist, setTodoList] = useState([]);
     const [search, setSearch] = useState("");
@@ -28,13 +27,14 @@ export function Dashboard() {
     useEffect(() => {
         if (!username) navigate("/login");
         getTodos();
-    }, [])
+    }, []);
 
     function logoutClick() {
         localStorage.removeItem("username");
         toast.success("Logged out successfully");
         navigate("/login");
     }
+
     function sortedAndFilteredTodos() {
         let filtered = todolist.filter(todo => filterPriority === "" ||
             (filterPriority === "high" && todo.priority > 8) ||
@@ -53,48 +53,33 @@ export function Dashboard() {
         return filtered;
     }
 
-    return <>
-        <div className="container" style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "100vh" }}>
-            <div style={{ width: "500px" }}>
-                <div style={{ display: 'flex', justifyContent: "space-between", alignItems: "center" ,flexDirection:"column"}}>
-                    <h1>Welcome, {username}!</h1>
-                    <div style={{display:"flex",flexDirection:"row",gap:"17rem"}}>
-                        <Button style={{backgroundColor:"#ff4d4d",color:"white"}} variant="outlined" size="large"  onClick={() => navigate("/profile")}>Profile</Button>
-
-                        <Button variant="outlined" size="large" color="error" onClick={logoutClick}>Logout</Button>
-                    </div>
-                   <br />
-                </div>
-                <form className="taskForm">
-                    <div style={{ padding: "10px", width: "31rem", marginLeft: "-7px" }}>
-                        <TextField style={{backgroundColor:"white",borderRadius:"5px"}} fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
-                    </div>
-                    <div>
-                        <div style={{ display: "flex", flexDirection: "column" }}>
-                            <select onChange={(e) => setFilterPriority(e.target.value)}>
-                                <option value="">All</option>
-                                <option value="high">High Priority</option>
-                                <option value="medium">Medium Priority</option>
-                                <option value="low">Low Priority</option>
-                            </select>
-
-                            <select onChange={(e) => setSortBy(e.target.value)}>
-                                <option value="">Sort by</option>
-                                <option value="creation">Creation Time</option>
-                                <option value="deadline">Deadline</option>
-                                <option value="priority">Priority</option>
-                            </select>
-                        </div>
-
-                        {sortedAndFilteredTodos().map(todo => <Todo {...todo} key={todo.id} updateTodos={getTodos} />)}
-                    </div>
-                </form>
-                <br />
-                <br />
-                <CreateTodoModal updateTodos={getTodos} />
-                <Statistics todos={todolist} />
+    return (
+        <div className="container">
+            <h1>Welcome, {username}!</h1>
+            <div className="button-container">
+                <Button className="profile-button" variant="contained" size="large" onClick={() => navigate("/profile")}>Profile</Button>
+                <Button className="logout-button" variant="contained" size="large" onClick={logoutClick}>Logout</Button>
             </div>
+            <form className="taskForm">
+                <TextField fullWidth placeholder="Search" value={search} onChange={e => setSearch(e.target.value)} />
+                <select onChange={(e) => setFilterPriority(e.target.value)}>
+                    <option value="">All</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
+                </select>
+                <select onChange={(e) => setSortBy(e.target.value)}>
+                    <option value="">Sort by</option>
+                    <option value="creation">Creation Time</option>
+                    <option value="deadline">Deadline</option>
+                    <option value="priority">Priority</option>
+                </select>
+            </form>
+            <div className="task-list">
+                {sortedAndFilteredTodos().map(todo => <Todo {...todo} key={todo.id} updateTodos={getTodos} />)}
+            </div>
+            <CreateTodoModal updateTodos={getTodos} />
+            <Statistics todos={todolist} />
         </div>
-    </>
+    );
 }
-

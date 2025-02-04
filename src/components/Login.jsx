@@ -55,7 +55,7 @@ function Login() {
                     <Button style={{ backgroundColor: "blue", color: "white" }} onClick={loginClick} variant="outlined" size='large'>Login</Button>
                 </center>
                 <br />
-                <div style={{ marginLeft: "18px" }}>
+                <div>
                     Do not have an account? <Link to="/signup">Sign Up</Link>
                 </div>
             </div>

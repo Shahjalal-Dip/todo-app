@@ -48,6 +48,7 @@ export function CreateTodoModal({ updateTodos }) {
         updateTodos();
     }
     return <div>
+        <br />
         <Button onClick={() => setIsOpen(true)} variant="contained" size="large">Create</Button>
         <Modal open={isOpen} onClose={() => setIsOpen(false)}>
             <div style={style}>

@@ -12,7 +12,7 @@ export function Statistics({ todos }) {
         labels: ["Completed", "Pending"],
         datasets: [{
             data: [completedTasks, pendingTasks],
-            backgroundColor: ["#28a745", "#ff4d4d"]
+            backgroundColor: ["#28a745", "#ff4d4d"],
         }]
     };
 

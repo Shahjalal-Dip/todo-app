@@ -1,19 +1,8 @@
-Here's a **README.md** file for your **TodoApp** project with a clean structure, including setup instructions, features, API usage, and deployment details.  
+# 📝 TodoApp
 
----
-
-### **📌 README.md for TodoApp**  
-
-```md
-# 📝 TodoApp - ReactJS Assignment
-
-A simple and feature-rich **TodoApp** built using **ReactJS**. This project includes a stopwatch, an enhanced todo list with filtering, sorting, countdown timers, and a profile page.
+A simple and feature-rich **TodoApp** built using **ReactJS**. This project includes an enhanced todo list with filtering, sorting, countdown timers, and a profile page.
 
 ## 🚀 Features
-
-### ✅ **Stopwatch**
-- Start and stop the stopwatch.
-- Tracks hours, minutes, and seconds with a beautiful UI.
 
 ### ✅ **Todo List Enhancements**
 - **Mark as Completed**: Update todo status instantly.
